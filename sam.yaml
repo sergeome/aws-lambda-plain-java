@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Spark API - com.demo::spark-cloud
+Resources:
+  SparkCloudFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: LambdaHandler::handleRequest
+      Runtime: java8
+      CodeUri: build/libs/aws-lambda-plain-java-1.0.jar
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 40
+      Events:
+        GetRootResource:
+          Type: Api
+          Properties:
+            Path: /
+            Method: any

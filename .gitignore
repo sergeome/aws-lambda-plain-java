@@ -1,0 +1,5 @@
+.gradle/
+.idea/
+.serverless/
+build/
+aws-lambda-plain-java.iml
