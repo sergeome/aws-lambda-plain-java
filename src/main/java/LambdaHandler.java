@@ -1,14 +1,23 @@
-import api.RequestClass;
-import api.ResponseClass;
+import api.app.AppResponse;
+import api.gateway.ApiGatewayRequest;
+import api.gateway.ApiGatewayResponse;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-public class LambdaHandler implements RequestHandler<RequestClass, ResponseClass> {
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-    public static void main(String[] args) {}
+public class LambdaHandler implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse> {
 
-    public ResponseClass handleRequest(RequestClass request, Context context) {
-        return new ResponseClass("Hello World");
+    public ApiGatewayResponse handleRequest(ApiGatewayRequest request, Context context) {
+
+        // Setting headers
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("Content-Type", "application/json");
+
+        return new ApiGatewayResponse(200, headers, new AppResponse("Hello World!").toJson());
     }
-
 }

@@ -1,4 +1,4 @@
-service: aws-lambda-plain-java
+service: aws-lambda-plain-java-test
 
 provider:
   name: aws
@@ -11,7 +11,7 @@ package:
 
 functions:
   app:
-    handler: StreamLambdaHandler::handleRequest
+    handler: LambdaHandler::handleRequest
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
